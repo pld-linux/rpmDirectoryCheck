@@ -73,8 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README THANKS
-%doc sample/generate.sh
+%doc AUTHORS ChangeLog NEWS README THANKS sample/generate.sh
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*.conf
 %ghost %{_sysconfdir}/%{name}/*.confc
