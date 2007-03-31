@@ -1,4 +1,5 @@
 Summary:	A QA tool to check a large set of RPM-packages for packaging errors
+Summary(pl.UTF-8):	Narzędzie QA do sprawdzania dużego zbioru pakietów RPM pod kątem błędów pakietowania
 Name:		rpmDirectoryCheck
 Version:	0.8.3
 Release:	0.1
@@ -28,6 +29,16 @@ inodes after deleting a package.
 As a side-effect the directory-checker can create a graphical
 representation of a package and its requirements.
 
+%description -l pl.UTF-8
+Ten program został zaprojektowany do znajdowania pakietów RPM
+umieszczających pliki w katalogach bez zawierania tych katalogów. Ta
+praktyka powoduje w najlepszym wypadku ostrzeżenia podczas
+uaktualniania pakietów. W najgorszym wypadku zostajemy z wieloma
+osieroconymi katalogami i zmarnowanymi i-węzłami po usunięciu pakietu.
+
+Jako efekt uboczny program może tworzyć graficzną reprezentację
+pakietu i jego zależności.
+
 %prep
 %setup -q
 %{__sed} -i -e '1s,#!.*bin/python2,#!%{_bindir}/python,'#! src/*.py
@@ -38,7 +49,9 @@ representation of a package and its requirements.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 for i in $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/*.conf; do
 	test -e "$i" || continue
